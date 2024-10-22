@@ -11,7 +11,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #062424; /* Change background color */
+            background-color: #062424;
         }
 
         h1,h2,h3,h4,h5,h6 {
@@ -23,7 +23,7 @@
         }
         
         a {
-        	color:cyan;
+            color: cyan;
         }
 
         .container {
@@ -35,22 +35,23 @@
 
         .box {
             width: auto;
-            height: 200px; /* Set fixed height */
+            height: 200px;
             margin: 0 10px;
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: #00f1f1;
-            border-radius: 5px; /* Rounded corners */
+            border-radius: 5px;
             padding: 3px;
             overflow: hidden;
             text-decoration: none;
+            cursor: pointer;
         }
 
         .box img {
-            height: 100%; /* Same height for all images */
-            width: auto; /* Maintain aspect ratio */
-            border-radius: 5px; /* Slight rounding of the image itself */
+            height: 100%;
+            width: auto;
+            border-radius: 5px;
         }
 
         .box:hover {
@@ -64,23 +65,161 @@
         }
         
         .flex-container {
-            display:flex;
-            align-items:center;
-            padding:1em;
+            display: flex;
+            align-items: center;
+            padding: 1em;
         }
-        .flex-child {
+        
+        /* Modal styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
 
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(81vw + 270px);
+            height: 81vh;
+            background: #000;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 241, 241, 0.3);
+            z-index: 1001;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .close-button {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: #00f1f1;
+            border: none;
+            color: #062424;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.2s ease;
+            z-index: 1002;
+        }
+
+        .close-button:hover {
+            background: #fff;
+        }
+
+        .game-iframe {
+            width: calc(100% - 200px);
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00f1f1;
+            font-size: 1.2em;
+        }
+
+        .game-description-panel {
+            position: absolute;
+            right: 0px; /* Panel appears on the right side */
+            top: 0;
+            width: 280px;
+            height: 100%;
+            background: rgba(6, 36, 36, 0.95);
+            padding: 20px;
+            color: #f1f1f1;
+            border-left: 2px solid #00f1f1;
+            overflow-y: auto;
+        }
+
+        .game-description-panel h3 {
+            color: #00f1f1;
+            margin: 0 0 15px 0;
+        }
+
+        .game-description-panel h4 {
+            color: #00f1f1;
+            margin: 20px 0 10px 0;
+        }
+
+        .game-description-panel ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .game-description-panel li {
+            margin-bottom: 8px;
+            color: #f1f1f1;
+        }
+
+        @media (max-width: 1200px) {
+            .game-description-panel {
+                position: relative;
+                right: 0;
+                width: auto;
+                height: auto;
+                border-left: none;
+                border-top: 2px solid #00f1f1;
+            }
+            
+            .modal {
+                width: 90vw;
+            }
+            
+            .game-iframe {
+                width: 100%;
+                height: calc(100% - 200px); /* Adjust based on description panel height */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .modal {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+            }
+
+            .game-iframe {
+                border-radius: 0;
+            }
+
+            .close-button {
+                top: 10px;
+                right: 10px;
+            }
         }
     </style>
 </head>
-
 <body>
+    <!-- Keep your existing header content -->
     <div class="flex-container">
         <div class="flex-child" style="width:50%;">
-        	<h2 style="text-align: center; margin-top: 10px;">Puffer Ocean</h2>
-          
+            <h2 style="text-align: center; margin-top: 10px;">Puffer Ocean</h2>
             <p>Our growing collection of 1st party environments. All run 1M+ agent steps per second per cpu core. They are implemented in pure C and can be compiled as desktop or web apps. Read our docs <a href="https://pufferai.github.io" style="color: cyan;">here</a>. All our tools are free and open source, but we do offer <a href="https://puffer.ai">service packages</a> for companies.</p>
-            
             <center>
                 <div style="display: flex; align-items: center; justify-content: center; margin: auto;">
                     <div style="flex-shrink: 0; width: 60px; margin-right: 20px;">
@@ -97,7 +236,6 @@
                 </div>
             </center>
         </div>
-
         <div class="flex-child" style="width:50%;">
             <video width=100% height="auto" nocontrols autoplay playsinline muted loop>
                 <source src="assets/banner.webm" type="video/webm">
@@ -107,64 +245,187 @@
         </div>
     </div>
 
-    <div class="container" style="display: flex; justify-content: center;">
+    <div class="container">
         <div style="text-align: center; margin: 0 20px;">
-            <a href="assets/moba/game.html" class="box">
+            <div class="box" onclick="openGame('moba')">
                 <img src="assets/moba_thumbnail.png" alt="MOBA Thumbnail">
-            </a>
+            </div>
             <p style="color: white;">Puffer MOBA</p>
         </div>
         <div style="text-align: center; margin: 0 20px;">
-            <a href="assets/tactical/game.html" class="box">
+            <div class="box" onclick="openGame('tactical')">
                 <img src="assets/tactical_thumbnail.png" alt="Tactics Thumbnail">
-            </a>
+            </div>
             <p style="color: white;">Puffer Tactics</p>
         </div>
     </div>
 
-    <div class="container" style="display: flex; justify-content: center;">
+    <div class="container">
         <div style="text-align: center; margin: 0 20px;">
-            <a href="assets/tcg/game.html" class="box">
+            <div class="box" onclick="openGame('tcg')">
                 <img src="assets/tcg_thumbnail.png" alt="TCG Thumbnail">
-            </a>
+            </div>
             <p style="color: white;">TCG</p>
         </div>
         <div style="text-align: center; margin: 0 20px;">
-            <a href="assets/snake/game.html" class="box">
+            <div class="box" onclick="openGame('snake')">
                 <img src="assets/snake_thumbnail.png" alt="Snake Thumbnail">
-            </a>
+            </div>
             <p style="color: white;">Multiagent Snake</p>
         </div>
     </div>
 
-    <div class="container" style="display: flex; justify-content: center;">
+    <div class="container">
         <div style="text-align: center; margin: 0 20px;">
-            <a href="assets/pong/game.html" class="box">
+            <div class="box" onclick="openGame('pong')">
                 <img src="assets/pong_thumbnail.png" alt="Pong Thumbnail">
-            </a>
+            </div>
             <p style="color: white;">Pong</p>
         </div>
         <div style="text-align: center; margin: 0 20px;">
-            <a href="assets/breakout/game.html" class="box">
+            <div class="box" onclick="openGame('breakout')">
                 <img src="assets/breakout_thumbnail.png" alt="Breakout Thumbnail">
-            </a>
+            </div>
             <p style="color: white;">Breakout</p>
         </div>
     </div>
 
-    <div class="container" style="display: flex; justify-content: center;">
+    <div class="container">
         <div style="text-align: center; margin: 0 20px;">
-            <a href="assets/tripletriad/game.html" class="box">
+            <div class="box" onclick="openGame('tripletriad')">
                 <img src="assets/tripletriad_thumbnail.png" alt="Puffer Triad Thumbnail">
-            </a>
+            </div>
             <p style="color: white;">Puffer Triad</p>
         </div>
         <div style="text-align: center; margin: 0 20px;">
-            <a href="assets/connect4/game.html" class="box">
+            <div class="box" onclick="openGame('connect4')">
                 <img src="assets/connect4_thumbnail.png" alt="Connect4 Thumbnail">
-            </a>
+            </div>
             <p style="color: white;">Connect4</p>
         </div>
     </div>
 
+    <!-- Modal structure -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-content">
+                <button class="close-button" id="closeButton">×</button>
+                <div class="loading" id="loadingIndicator">Loading game...</div>
+                <div class="game-description-panel">
+                    <h3>Puffer Tactics</h3>
+                    <p>A turn-based tactical combat game where players face off in an isometric arena. Cast spells, control space, and outmaneuver your opponent in this fast-paced tactical battle.</p>
+                    <div class="game-controls">
+                        <h4>Controls:</h4>
+                        <ul>
+                            <li>Press Q or Backspace to exit</li>
+                            <li>Press 1-5 to cast spells</li>
+                            <li>Press Space to skip turn</li>
+                            <li>Use mouse to select targets</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentGame = null;
+
+        function openGame(gameName) {
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalContent = document.querySelector('.modal-content');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            
+            // Show modal and loading indicator
+            modalOverlay.style.display = 'block';
+            loadingIndicator.style.display = 'block';
+
+            // Create new iframe
+            const iframe = document.createElement('iframe');
+            iframe.className = 'game-iframe';
+            iframe.src = `assets/${gameName}/game.html`;
+            
+            // Hide loading indicator once iframe is loaded
+            iframe.onload = () => {
+                loadingIndicator.style.display = 'none';
+            };
+
+            // Remove any existing iframe
+            const existingIframe = modalContent.querySelector('iframe');
+            if (existingIframe) {
+                existingIframe.remove();
+            }
+
+            modalContent.appendChild(iframe);
+            currentGame = iframe;
+
+            // Update description based on game
+            const descriptions = {
+                'tcg': {
+                    title: 'Puffer Tactics',
+                    description: 'A turn-based tactical combat game where players face off in an isometric arena. Cast spells, control space, and outmaneuver your opponent in this fast-paced tactical battle.',
+                    controls: [
+                        'Press Q or Backspace to exit',
+                        'Press 1-5 to cast spells',
+                        'Press Space to skip turn',
+                        'Use mouse to select targets'
+                    ]
+                },
+                'moba': {
+                    title: 'Puffer MOBA',
+                    description: 'A fast-paced multiplayer online battle arena featuring dynamic combat and strategic team play.',
+                    controls: [
+                        'WASD to move',
+                        'Mouse to aim',
+                        'Q/W/E/R for abilities',
+                        'Space for special action'
+                    ]
+                },
+                // Add descriptions for other games...
+            };
+
+            const gameInfo = descriptions[gameName] || {
+                title: gameName.charAt(0).toUpperCase() + gameName.slice(1),
+                description: 'An exciting Puffer Ocean game.',
+                controls: ['Game-specific controls will appear here']
+            };
+
+            const descriptionPanel = modalContent.querySelector('.game-description-panel');
+            descriptionPanel.innerHTML = `
+                <h3>${gameInfo.title}</h3>
+                <p>${gameInfo.description}</p>
+                <div class="game-controls">
+                    <h4>Controls:</h4>
+                    <ul>
+                        ${gameInfo.controls.map(ctrl => `<li>${ctrl}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+        }
+
+        function closeGame() {
+            const modalOverlay = document.getElementById('modalOverlay');
+            modalOverlay.style.display = 'none';
+            if (currentGame) {
+                currentGame.remove();
+                currentGame = null;
+            }
+        }
+
+        // Event listeners
+        document.getElementById('closeButton').addEventListener('click', closeGame);
+        document.getElementById('modalOverlay').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('modalOverlay')) {
+                closeGame();
+            }
+        });
+
+        // Handle escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeGame();
+            }
+        });
+    </script>
 </body>
+</html>
