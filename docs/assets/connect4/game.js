@@ -39,7 +39,7 @@ if (ENVIRONMENT_IS_NODE) {
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: /tmp/tmp49r7aqia.js
+// include: /tmp/tmp0npyufcz.js
 
   if (!Module.expectedDataFileDownloads) {
     Module.expectedDataFileDownloads = 0;
@@ -217,25 +217,25 @@ Module['FS_createPath']("/resources", "moba", true, true);
     }
 
     }
-    loadPackage({"files": [{"filename": "/resources/breakout_weights.bin", "start": 0, "end": 592404}, {"filename": "/resources/moba/bloom_shader_100.fs", "start": 592404, "end": 593473}, {"filename": "/resources/moba/bloom_shader_330.fs", "start": 593473, "end": 594544}, {"filename": "/resources/moba/dota_map.png", "start": 594544, "end": 598240}, {"filename": "/resources/moba/game_map.npy", "start": 598240, "end": 614624}, {"filename": "/resources/moba/map_shader_100.fs", "start": 614624, "end": 618204}, {"filename": "/resources/moba/map_shader_330.fs", "start": 618204, "end": 624781}, {"filename": "/resources/moba/moba_assets.png", "start": 624781, "end": 738030}, {"filename": "/resources/moba/moba_weights.bin", "start": 738030, "end": 2258254}, {"filename": "/resources/pong_weights.bin", "start": 2258254, "end": 2793310}, {"filename": "/resources/puffers_128.png", "start": 2793310, "end": 2816216}, {"filename": "/resources/snake_weights.bin", "start": 2816216, "end": 2881260}], "remote_package_size": 2881260});
+    loadPackage({"files": [{"filename": "/resources/breakout_weights.bin", "start": 0, "end": 592404}, {"filename": "/resources/connect4.pt", "start": 592404, "end": 622798}, {"filename": "/resources/connect4_weights.bin", "start": 622798, "end": 648942}, {"filename": "/resources/moba/bloom_shader_100.fs", "start": 648942, "end": 650011}, {"filename": "/resources/moba/bloom_shader_330.fs", "start": 650011, "end": 651082}, {"filename": "/resources/moba/dota_map.png", "start": 651082, "end": 654778}, {"filename": "/resources/moba/game_map.npy", "start": 654778, "end": 671162}, {"filename": "/resources/moba/map_shader_100.fs", "start": 671162, "end": 674742}, {"filename": "/resources/moba/map_shader_330.fs", "start": 674742, "end": 681319}, {"filename": "/resources/moba/moba_assets.png", "start": 681319, "end": 794568}, {"filename": "/resources/moba/moba_weights.bin", "start": 794568, "end": 2314792}, {"filename": "/resources/pong_weights.bin", "start": 2314792, "end": 2849848}, {"filename": "/resources/puffers_128.png", "start": 2849848, "end": 2872754}, {"filename": "/resources/snake_weights.bin", "start": 2872754, "end": 2937798}], "remote_package_size": 2937798});
 
   })();
 
-// end include: /tmp/tmp49r7aqia.js
-// include: /tmp/tmpz5p6io8q.js
+// end include: /tmp/tmp0npyufcz.js
+// include: /tmp/tmpktry824v.js
 
     // All the pre-js content up to here must remain later on, we need to run
     // it.
     if (Module['$ww'] || (typeof ENVIRONMENT_IS_PTHREAD != 'undefined' && ENVIRONMENT_IS_PTHREAD)) Module['preRun'] = [];
     var necessaryPreJSTasks = Module['preRun'].slice();
-  // end include: /tmp/tmpz5p6io8q.js
-// include: /tmp/tmpkq4u37en.js
+  // end include: /tmp/tmpktry824v.js
+// include: /tmp/tmpb789r_0l.js
 
     if (!Module['preRun']) throw 'Module.preRun should exist because file support used it; did a pre-js delete it?';
     necessaryPreJSTasks.forEach((task) => {
       if (Module['preRun'].indexOf(task) < 0) throw 'All preRun tasks that exist before user pre-js code should remain after; did you replace Module or modify Module.preRun?';
     });
-  // end include: /tmp/tmpkq4u37en.js
+  // end include: /tmp/tmpb789r_0l.js
 
 
 // Sometimes an existing Module object exists with properties
